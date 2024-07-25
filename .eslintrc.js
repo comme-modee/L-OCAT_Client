@@ -4,5 +4,6 @@ module.exports = {
     'eslint:recommended',
     '@react-native-community',
     'plugin:prettier/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
 };
