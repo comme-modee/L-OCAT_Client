@@ -12,8 +12,8 @@ const LoginScreen = () => {
 
   const isIOS = Platform.OS === 'ios'
   
-  const kakaoLogin = () => {
-    KakaoLogin.login()
+  const kakaoLogin = async () => {
+    await KakaoLogin.login()
       .then((result) => {
         console.log("Login Success", JSON.stringify(result));
       })
@@ -29,16 +29,16 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Logo style={styles.logo}/>
-      <Pressable style={{...styles.btn, backgroundColor: '#FEE500'}} onPress={kakaoLogin}>
+      <Pressable style={[styles.btn, styles.kakaoBtn]} onPress={kakaoLogin}>
         <KakaoIcon/>
-        <Text style={{...styles.btnText, color: '#262200'}}>카카오 로그인</Text>
+        <Text style={[styles.btnText, styles.kakaoBtnText]}>카카오 로그인</Text>
       </Pressable>
 
-      {/* {isIOS &&  */}
-      <Pressable style={{...styles.btn, backgroundColor: 'black', marginTop: 14}} onPress={appleLogin}>
+      {isIOS && 
+      <Pressable style={[styles.btn, styles.appleBtn]} onPress={appleLogin}>
         <AppleIcon/>
-        <Text style={{...styles.btnText, color: "white"}}>애플 로그인</Text>
-      </Pressable>
+        <Text style={[styles.btnText, styles.appleBtnText]}>애플 로그인</Text>
+      </Pressable>}
 
     </View>
   );
@@ -58,11 +58,24 @@ const styles = StyleSheet.create({
     width: '90%',
     borderRadius: 8
   },
+  kakaoBtn: {
+    backgroundColor: '#FEE500',
+  },
+  appleBtn: {
+    backgroundColor: 'black',
+    marginTop: 14,
+  },
   btnText: {
     fontSize: 18,
     textAlign: 'center',
     padding: 16,
     width: '78%'
+  },
+  kakaoBtnText: {
+    color: '#262200'
+  },
+  appleBtnText: {
+    color: "white"
   },
   logo: {
     marginBottom: 40
